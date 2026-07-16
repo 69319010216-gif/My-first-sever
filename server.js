@@ -1,23 +1,143 @@
-// 1. เรียกใชงาน Module ที่ชื่อวา 'http' ซึ่งเปนระบบพื้นฐานของ Node.js สําหรับทําเซิรฟ เวอร
- const http = require('http');
+// Node.js Web Server - Cyber Style 🚀
 
- // 2. กําหนดชองทาง (Port) ที่เซิรฟเวอรจะใชสื่อสาร โดยใหใชของที่ Cloud กําหนดมา(process.env.PORT) ถาไมมีใหใช 3000
- const port = process.env.PORT || 3000;
+const http = require('http');
 
- // 3. สรางเครื่องแมขาย (Server) ที่คอยรับคําขอ (req) และตอบกลับ (res)
- const server = http.createServer((req, res) => {
+const port = process.env.PORT || 3000;
 
- // 3.1 ตั้งรหัสสถานะ 200 หมายถึง "ทํางานสําเร็จ (OK)"
- res.statusCode = 200;
+const server = http.createServer((req, res) => {
 
- // 3.2 บอกเบราวเซอรของผูใชวา สิ่งที่สงกลับไปคือไฟลขอความแบบ HTML และรองรับภาษาไทย (utf-8)
- res.setHeader('Content-Type', 'text/html; charset=utf-8');
+    res.statusCode = 200;
 
-// 3.3 สงขอมูลหนาเว็บกลับไปหาผูใช (*** ใหนักศึกษาแกชื่อ-นามสกุลตรงนี้ ***)
-res.end('<h1>สวัสดีครับ! นี่คือ Web Server ของ นายรพีพัทธ์ เจริญรัญวุฒิกุล รหัสนักศึกษา 123456789 </h1><p>เครื่องแม่ข่ายทํางานปกติบนระบบ Railway แล้วครับผม!</p>');
- });
+    res.setHeader(
+        'Content-Type',
+        'text/html; charset=utf-8'
+    );
 
- // 4. สั่งใหเซิรฟเวอรเริ่มตนเปดรับฟงการเชื่อมตอตาม Port ที่กําหนดไว
- server.listen(port, () => {
- console.log(`Server is running! เครื่องแม่ข่ายเปิดทํางานแล้วที่ช่องทาง: ${port}`);
- });
+    res.end(`
+    <!DOCTYPE html>
+    <html lang="th">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Server Status</title>
+
+        <style>
+            *{
+                margin:0;
+                padding:0;
+                box-sizing:border-box;
+                font-family:'Segoe UI',sans-serif;
+            }
+
+            body{
+                height:100vh;
+                display:flex;
+                justify-content:center;
+                align-items:center;
+                background:
+                radial-gradient(circle at top,#1e293b,#020617);
+                color:white;
+            }
+
+            .card{
+                width:450px;
+                padding:40px;
+                text-align:center;
+                border-radius:25px;
+
+                background:rgba(255,255,255,0.08);
+                backdrop-filter:blur(15px);
+
+                border:1px solid rgba(255,255,255,0.2);
+
+                box-shadow:
+                0 0 30px rgba(0,255,255,0.3);
+            }
+
+            .icon{
+                font-size:60px;
+                margin-bottom:20px;
+            }
+
+            h1{
+                font-size:28px;
+                color:#22d3ee;
+                text-shadow:
+                0 0 10px #22d3ee;
+            }
+
+            p{
+                margin-top:15px;
+                color:#cbd5e1;
+                font-size:18px;
+            }
+
+            .status{
+                margin-top:25px;
+                padding:12px;
+                border-radius:20px;
+
+                background:#16a34a;
+                box-shadow:
+                0 0 20px #16a34a;
+
+                font-weight:bold;
+            }
+
+            .footer{
+                margin-top:25px;
+                font-size:13px;
+                color:#94a3b8;
+            }
+
+        </style>
+
+    </head>
+
+    <body>
+
+        <div class="card">
+
+            <div class="icon">
+                ⚡🖥️
+            </div>
+
+            <h1>
+                WEB SERVER ONLINE
+            </h1>
+
+            <p>
+                สวัสดีครับ! 👋<br>
+                Web Server ของ<br>
+                <b>นายรพีพัทธ์ เจริญรัญวุฒิกุล</b>
+            </p>
+
+            <p>
+                รหัสนักศึกษา : <b>123456789</b>
+            </p>
+
+            <div class="status">
+                ✅ SERVER RUNNING SUCCESS
+            </div>
+
+            <div class="footer">
+                🚀 Powered by Node.js + Railway
+            </div>
+
+        </div>
+
+    </body>
+    </html>
+    `);
+
+});
+
+
+server.listen(port, () => {
+
+    console.log(
+        `🔥 Server Online : Port ${port}`
+    );
+
+});
