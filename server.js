@@ -40,10 +40,9 @@ const server = http.createServer((req, res) => {
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:'Segoe UI',sans-serif;
+    font-family:'Segoe UI', 'Courier New', sans-serif;
 
 }
-
 
 
 body{
@@ -60,60 +59,57 @@ body{
 
     color:white;
 
+    background: #000814;
 
-    background:
-
-    radial-gradient(circle at top,#9333ea,#4c1d95,#020617);
-
+    position: relative;
 
 }
 
 
-
-/* กลุ่มดาว Background */
+/* Animated Stars Background */
 
 body::before{
 
     content:"";
 
-    position:absolute;
+    position:fixed;
 
-    width:200%;
+    width:100%;
 
-    height:200%;
+    height:100%;
 
+    top:0;
+
+    left:0;
 
     background-image:
 
     radial-gradient(circle,#ffffff 2px,transparent 3px),
 
-    radial-gradient(circle,#c084fc 1px,transparent 2px),
+    radial-gradient(circle,#c084fc 1.5px,transparent 2px),
 
-    radial-gradient(circle,#ffffff 1px,transparent 2px);
-
-
+    radial-gradient(circle,#a78bfa 1px,transparent 2px);
 
     background-size:
 
-    120px 120px,
+    150px 150px,
 
-    200px 200px,
+    220px 220px,
 
-    70px 70px;
+    90px 90px;
 
+    background-position: 0 0, 50px 50px, 25px 25px;
 
+    animation:stars 60s linear infinite;
 
-    animation:stars 25s linear infinite;
+    opacity:.6;
 
-
-    opacity:.7;
+    z-index:1;
 
 }
 
 
-
 @keyframes stars{
-
 
     from{
 
@@ -121,232 +117,313 @@ body::before{
 
     }
 
-
     to{
 
-        transform:translateY(-300px);
+        transform:translateY(-400px);
 
     }
-
 
 }
 
 
+/* Nebula Gradient Background */
+
+body::after{
+
+    content:"";
+
+    position:fixed;
+
+    width:100%;
+
+    height:100%;
+
+    top:0;
+
+    left:0;
+
+    background: 
+
+    radial-gradient(ellipse at 20% 50%, rgba(147, 51, 234, 0.3) 0%, transparent 50%),
+
+    radial-gradient(ellipse at 80% 50%, rgba(236, 72, 153, 0.2) 0%, transparent 50%),
+
+    radial-gradient(ellipse at 50% 100%, rgba(59, 130, 246, 0.2) 0%, transparent 50%);
+
+    pointer-events: none;
+
+    z-index:1;
+
+}
 
 
-/* Card */
+/* Card Container */
 
 .card{
-
 
     position:relative;
 
     z-index:2;
 
+    width:500px;
 
-    width:460px;
-
-
-    padding:45px;
-
+    padding:50px;
 
     text-align:center;
 
+    border-radius:25px;
 
-    border-radius:35px;
+    background: rgba(15, 23, 42, 0.8);
 
+    backdrop-filter: blur(30px);
 
-    background:
-
-    rgba(255,255,255,0.1);
-
-
-
-    backdrop-filter:
-
-    blur(20px);
-
-
-
-    border:
-
-    1px solid rgba(255,255,255,.25);
-
-
+    border: 2px solid rgba(168, 85, 247, 0.4);
 
     box-shadow:
 
+    0 0 50px rgba(147, 51, 234, 0.5),
 
-    0 0 40px #c084fc,
+    0 0 100px rgba(236, 72, 153, 0.3),
 
-    inset 0 0 30px rgba(168,85,247,.3);
+    inset 0 0 40px rgba(168, 85, 247, 0.2);
 
-
-
-}
-
-
-
-
-/* ดาวเคราะห์ */
-
-.planet{
-
-
-    font-size:75px;
-
-
-    animation:
-
-    float 3s infinite ease-in-out;
-
+    animation: cardFloat 4s ease-in-out infinite;
 
 }
 
 
+@keyframes cardFloat{
 
-@keyframes float{
+    0%, 100%{
 
-
-    50%{
-
-        transform:translateY(-15px);
+        transform: translateY(0px);
 
     }
 
+    50%{
+
+        transform: translateY(-20px);
+
+    }
 
 }
 
 
+/* Planet Emoji */
+
+.planet{
+
+    font-size:85px;
+
+    animation: planetRotate 8s linear infinite;
+
+    display: inline-block;
+
+}
+
+
+@keyframes planetRotate{
+
+    from{
+
+        transform: rotateY(0deg) rotateZ(-20deg);
+
+    }
+
+    to{
+
+        transform: rotateY(360deg) rotateZ(-20deg);
+
+    }
+
+}
 
 
 h1{
 
+    margin-top:25px;
 
-    margin-top:20px;
+    font-size:36px;
 
+    color:#f0f9ff;
 
-    font-size:32px;
+    font-weight:700;
 
-
-    color:#f3e8ff;
-
-
+    letter-spacing:2px;
 
     text-shadow:
 
+    0 0 15px rgba(147, 51, 234, 0.8),
 
-    0 0 10px #d8b4fe,
+    0 0 30px rgba(168, 85, 247, 0.5),
 
-    0 0 30px #9333ea;
-
-
-}
-
-
-
-p{
-
-
-    margin-top:15px;
-
-
-    font-size:18px;
-
-
-    color:#e9d5ff;
-
-
+    0 0 45px rgba(236, 72, 153, 0.3);
 
 }
 
 
+.subtitle{
 
+    margin-top:12px;
 
-.status{
+    font-size:16px;
 
-
-    margin-top:30px;
-
-
-    padding:14px;
-
-
-    border-radius:30px;
-
-
-
-    background:
-
-
-    linear-gradient(
-
-    90deg,
-
-    #7e22ce,
-
-    #d946ef
-
-    );
-
-
-
-    box-shadow:
-
-
-    0 0 25px #d946ef;
-
-
-
-    font-weight:bold;
-
+    color:#e0e7ff;
 
     letter-spacing:1px;
 
+    opacity:0.9;
 
 }
-
-
 
 
 .info{
 
+    margin-top:35px;
 
-    margin-top:25px;
+    padding:25px;
 
+    border-radius:18px;
 
-    padding:15px;
+    background: rgba(99, 102, 241, 0.1);
 
+    border: 1px solid rgba(168, 85, 247, 0.3);
 
-    border-radius:20px;
+    backdrop-filter: blur(20px);
 
-
-
-    background:
-
-    rgba(255,255,255,.08);
-
-
+    box-shadow: inset 0 0 30px rgba(147, 51, 234, 0.1);
 
 }
 
 
+.info p{
+
+    margin:12px 0;
+
+    font-size:16px;
+
+    color:#e9d5ff;
+
+    line-height:1.8;
+
+}
+
+
+.info b{
+
+    color:#f0f9ff;
+
+    font-weight:700;
+
+    font-size:18px;
+
+    text-shadow: 0 0 10px rgba(147, 51, 234, 0.6);
+
+}
+
+
+.status{
+
+    margin-top:30px;
+
+    padding:18px 30px;
+
+    border-radius:50px;
+
+    background: linear-gradient(
+
+        135deg,
+
+        rgba(168, 85, 247, 0.6),
+
+        rgba(236, 72, 153, 0.6)
+
+    );
+
+    border: 1.5px solid rgba(248, 113, 113, 0.5);
+
+    box-shadow:
+
+    0 0 30px rgba(236, 72, 153, 0.6),
+
+    inset 0 0 20px rgba(255, 255, 255, 0.1);
+
+    font-weight:bold;
+
+    letter-spacing:2px;
+
+    font-size:16px;
+
+    animation: statusPulse 2s ease-in-out infinite;
+
+}
+
+
+@keyframes statusPulse{
+
+    0%, 100%{
+
+        box-shadow:
+
+        0 0 30px rgba(236, 72, 153, 0.6),
+
+        inset 0 0 20px rgba(255, 255, 255, 0.1);
+
+    }
+
+    50%{
+
+        box-shadow:
+
+        0 0 50px rgba(236, 72, 153, 0.8),
+
+        inset 0 0 30px rgba(255, 255, 255, 0.2);
+
+    }
+
+}
 
 
 .footer{
 
+    margin-top:30px;
 
-    margin-top:25px;
-
-
-    color:#c4b5fd;
-
+    color:#a5b4fc;
 
     font-size:14px;
 
+    letter-spacing:0.5px;
+
+    opacity:0.8;
 
 }
 
+
+/* Responsive */
+
+@media (max-width: 600px){
+
+    .card{
+
+        width:90%;
+
+        padding:35px;
+
+    }
+
+    h1{
+
+        font-size:28px;
+
+    }
+
+    .planet{
+
+        font-size:70px;
+
+    }
+
+}
 
 
 </style>
@@ -355,121 +432,53 @@ p{
 </head>
 
 
-
 <body>
-
 
 
 <div class="card">
 
+    <div class="planet">🌌</div>
 
-<div class="planet">
+    <h1>GALAXY WEB</h1>
+    <p class="subtitle">SERVER ONLINE 🚀</p>
 
-🌌
+    <div class="info">
 
-</div>
+        <p>👨‍🚀 ผู้จัดทำ<br><b>นายรพีพัทธ์ เจริญรัญวุฒิกุล</b></p>
 
+        <p style="margin-top:18px;">🆔 รหัสนักศึกษา<br><b>123456789</b></p>
 
+    </div>
 
-<h1>
+    <div class="status">
+        ✨ SERVER ACTIVE ✨
+    </div>
 
-GALAXY WEB SERVER
-
-</h1>
-
-
-
-<p>
-
-🚀 Welcome To My Server
-
-</p>
-
-
-
-<div class="info">
-
-
-<p>
-
-👨‍🚀 ผู้จัดทำ
-
-<br>
-
-<b>
-นายรพีพัทธ์ เจริญรัญวุฒิกุล
-</b>
-
-
-</p>
-
-
-<p>
-
-🆔 รหัสนักศึกษา
-
-<br>
-
-<b>
-
-123456789
-
-</b>
-
-
-</p>
-
+    <div class="footer">
+        🌙 Powered by Node.js | Railway | Space Technology 🛸
+    </div>
 
 </div>
-
-
-
-<div class="status">
-
-✨ SERVER ONLINE ✨
-
-</div>
-
-
-
-<div class="footer">
-
-
-🌙 Node.js | Railway | Space System
-
-
-</div>
-
-
-
-</div>
-
-
 
 </body>
 
-
 </html>
-
 
     `);
 
 });
 
 
-
 // เปิด Server
 
 server.listen(port, () => {
 
-
-    console.log(`
+    console.log(\`
 
 🌌 Galaxy Server Online 🚀
 
-เปิดใช้งาน Port : ${port}
+เปิดใช้งาน Port : \${port}
 
-    `);
-
+    \`);
 
 });
