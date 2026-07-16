@@ -438,7 +438,7 @@ p.subtitle{
 
 <h1>GALAXY <span>SERVER</span></h1>
 
-<p class="subtitle">🚀 Welcome To Our Team</p>
+<p class="subtitle">🚀 Welcome To Server</p>
 
 </div>
 
