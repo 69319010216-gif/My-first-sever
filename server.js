@@ -63,6 +63,7 @@ body{
     background: linear-gradient(135deg, #0a0015 0%, #1a0033 25%, #2d0052 50%, #1a0033 75%, #0a0015 100%);
     background-size: 400% 400%;
     animation: gradientShift 15s ease infinite;
+    cursor: none;
 
 }
 
@@ -124,6 +125,33 @@ body::before{
 
     }
 
+}
+
+
+
+/* Mouse Trail Star */
+
+.star-trail {
+    position: fixed;
+    pointer-events: none;
+    z-index: 1;
+    font-size: 20px;
+    opacity: 1;
+}
+
+.star-trail.✨ {
+    animation: starFade 0.8s ease-out forwards;
+}
+
+@keyframes starFade {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1) rotate(0deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(var(--tx), var(--ty)) scale(0.3) rotate(180deg);
+    }
 }
 
 
@@ -479,6 +507,82 @@ p.subtitle{
 </div>
 
 </div>
+
+
+
+<script>
+
+// Mouse Trail Stars Effect
+const starEmojis = ['✨', '⭐', '💫', '🌟', '✨'];
+let lastX = 0;
+let lastY = 0;
+let mouseMovementCounter = 0;
+
+document.addEventListener('mousemove', (e) => {
+    lastX = e.clientX;
+    lastY = e.clientY;
+    
+    mouseMovementCounter++;
+    
+    // Create star every 3 pixels of movement
+    if (mouseMovementCounter > 3) {
+        createTrailStar(e.clientX, e.clientY);
+        mouseMovementCounter = 0;
+    }
+});
+
+function createTrailStar(x, y) {
+    const star = document.createElement('div');
+    star.className = 'star-trail';
+    
+    // Random emoji
+    const randomEmoji = starEmojis[Math.floor(Math.random() * starEmojis.length)];
+    star.textContent = randomEmoji;
+    
+    // Random offset direction
+    const offsetX = (Math.random() - 0.5) * 60;
+    const offsetY = (Math.random() - 0.5) * 60;
+    
+    star.style.left = x + 'px';
+    star.style.top = y + 'px';
+    star.style.setProperty('--tx', offsetX + 'px');
+    star.style.setProperty('--ty', offsetY + 'px');
+    
+    document.body.appendChild(star);
+    
+    // Remove star after animation
+    setTimeout(() => {
+        star.remove();
+    }, 800);
+}
+
+// Custom Cursor
+const customCursor = document.createElement('div');
+customCursor.style.cssText = \`
+    position: fixed;
+    width: 30px;
+    height: 30px;
+    border: 2px solid rgba(192, 132, 252, 0.8);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    background: radial-gradient(circle, rgba(192, 132, 252, 0.2), transparent);
+    box-shadow: 0 0 15px rgba(192, 132, 252, 0.6), inset 0 0 10px rgba(192, 132, 252, 0.3);
+    display: none;
+\`;
+document.body.appendChild(customCursor);
+
+document.addEventListener('mousemove', (e) => {
+    customCursor.style.display = 'block';
+    customCursor.style.left = (e.clientX - 15) + 'px';
+    customCursor.style.top = (e.clientY - 15) + 'px';
+});
+
+document.addEventListener('mouseleave', () => {
+    customCursor.style.display = 'none';
+});
+
+</script>
 
 
 
