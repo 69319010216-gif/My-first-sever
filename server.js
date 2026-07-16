@@ -128,6 +128,105 @@ body::before{
 }
 
 
+/* Space Background with Planets */
+
+.space-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.planet {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.6;
+}
+
+.planet-1 {
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle at 30% 30%, #ff6b9d, #d946ef);
+    top: 10%;
+    left: 5%;
+    box-shadow: 0 0 40px rgba(217, 70, 239, 0.5), inset -20px -20px 40px rgba(0,0,0,0.4);
+    animation: float1 8s ease-in-out infinite;
+}
+
+.planet-2 {
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle at 40% 40%, #a78bfa, #7c3aed);
+    top: 60%;
+    right: 8%;
+    box-shadow: 0 0 50px rgba(147, 51, 234, 0.6), inset -30px -30px 50px rgba(0,0,0,0.5);
+    animation: float2 10s ease-in-out infinite;
+}
+
+.planet-3 {
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle at 35% 35%, #60a5fa, #3b82f6);
+    bottom: 15%;
+    left: 12%;
+    box-shadow: 0 0 35px rgba(59, 130, 246, 0.5), inset -15px -15px 30px rgba(0,0,0,0.4);
+    animation: float3 12s ease-in-out infinite;
+}
+
+.planet-4 {
+    width: 180px;
+    height: 180px;
+    background: radial-gradient(circle at 35% 35%, #fbbf24, #f59e0b);
+    top: 20%;
+    right: 12%;
+    box-shadow: 0 0 45px rgba(245, 158, 11, 0.5), inset -25px -25px 45px rgba(0,0,0,0.4);
+    animation: float4 15s ease-in-out infinite;
+}
+
+.planet-ring {
+    position: absolute;
+    border: 3px solid rgba(147, 51, 234, 0.3);
+    border-radius: 50%;
+    top: 35%;
+    right: 20%;
+}
+
+.planet-ring-1 {
+    width: 250px;
+    height: 150px;
+    animation: rotate 20s linear infinite;
+}
+
+@keyframes float1 {
+    0%, 100% { transform: translateY(0px) translateX(0px); }
+    50% { transform: translateY(-30px) translateX(20px); }
+}
+
+@keyframes float2 {
+    0%, 100% { transform: translateY(0px) translateX(0px); }
+    50% { transform: translateY(40px) translateX(-25px); }
+}
+
+@keyframes float3 {
+    0%, 100% { transform: translateY(0px) translateX(0px); }
+    50% { transform: translateY(-35px) translateX(30px); }
+}
+
+@keyframes float4 {
+    0%, 100% { transform: translateY(0px) translateX(0px); }
+    50% { transform: translateY(25px) translateX(-35px); }
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+
 
 /* Mouse Trail Star */
 
@@ -230,11 +329,11 @@ body::before{
 
 /* ดาวเคราะห์ */
 
-.planet{
+.planet-emoji{
 
     font-size: 85px;
 
-    animation: float 4s infinite ease-in-out;
+    animation: floatEmoji 4s infinite ease-in-out;
 
     display: inline-block;
 
@@ -242,7 +341,7 @@ body::before{
 
 
 
-@keyframes float{
+@keyframes floatEmoji{
 
     0%, 100% { transform: translateY(0) rotate(0deg); }
     50% { transform: translateY(-20px) rotate(5deg); }
@@ -433,13 +532,18 @@ p.subtitle{
         font-size: 28px;
     }
 
-    .planet {
+    .planet-emoji {
         font-size: 60px;
     }
 
     p.subtitle {
         font-size: 16px;
     }
+
+    .planet-1 { width: 100px; height: 100px; }
+    .planet-2 { width: 130px; height: 130px; }
+    .planet-3 { width: 80px; height: 80px; }
+    .planet-4 { width: 120px; height: 120px; }
 
 }
 
@@ -454,7 +558,14 @@ p.subtitle{
 
 <body>
 
-
+<!-- Space Background -->
+<div class="space-background">
+    <div class="planet planet-1"></div>
+    <div class="planet planet-2"></div>
+    <div class="planet planet-3"></div>
+    <div class="planet planet-4"></div>
+    <div class="planet-ring planet-ring-1"></div>
+</div>
 
 <div class="container">
 
@@ -462,7 +573,7 @@ p.subtitle{
 
 <div class="header">
 
-<div class="planet">🌌</div>
+<div class="planet-emoji">🌌</div>
 
 <h1>GALAXY <span>SERVER</span></h1>
 
@@ -511,6 +622,27 @@ p.subtitle{
 
 
 <script>
+
+// Parallax effect with mouse movement
+document.addEventListener('mousemove', (e) => {
+    const planets = document.querySelectorAll('.planet');
+    const planetRings = document.querySelectorAll('.planet-ring');
+    
+    const moveX = (e.clientX - window.innerWidth / 2) * 0.02;
+    const moveY = (e.clientY - window.innerHeight / 2) * 0.02;
+    
+    planets.forEach((planet, index) => {
+        const offsetX = moveX * (index + 1) * 0.5;
+        const offsetY = moveY * (index + 1) * 0.5;
+        planet.style.transform = \`translate(\${offsetX}px, \${offsetY}px)\`;
+    });
+    
+    planetRings.forEach((ring, index) => {
+        const offsetX = moveX * (index + 1) * 0.3;
+        const offsetY = moveY * (index + 1) * 0.3;
+        ring.style.transform = \`translate(\${offsetX}px, \${offsetY}px) rotate(\${360 * (performance.now() / 20000)}deg)\`;
+    });
+});
 
 // Mouse Trail Stars Effect
 const starEmojis = ['✨', '⭐', '💫', '🌟', '✨'];
@@ -592,7 +724,7 @@ document.addEventListener('mouseleave', () => {
 </html>
 
 
-    `);
+    \`);
 
 });
 
@@ -603,13 +735,13 @@ document.addEventListener('mouseleave', () => {
 server.listen(port, () => {
 
 
-    console.log(`
+    console.log(\`
 
 🌌 Galaxy Server Online 🚀
 
-เปิดใช้งาน Port : ${port}
+เปิดใช้งาน Port : \${port}
 
-    `);
+    \`);
 
 
 });
