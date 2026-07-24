@@ -337,6 +337,27 @@ opacity:0;
 
 }
 
+body{
+    cursor:none;
+}
+
+.cursor{
+    position:fixed;
+    width:24px;
+    height:24px;
+    border-radius:50%;
+    pointer-events:none;
+    z-index:9999;
+    background:rgba(200,80,255,.35);
+    border:1px solid rgba(255,255,255,.4);
+    backdrop-filter:blur(5px);
+    box-shadow:
+        0 0 15px #d86cff,
+        0 0 35px #9b2dff,
+        0 0 70px #7b00ff;
+    transform:translate(-50%,-50%);
+}
+
 </style>
 </head>
 
@@ -538,6 +559,8 @@ requestAnimationFrame(animate);
 animate();
 
 </script>
+
+<div class="cursor"></div>
 
 </body>
 </html>
