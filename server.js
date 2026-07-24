@@ -104,6 +104,32 @@ margin-top:-18px;
 
 }
 
+.cursor{
+
+position:fixed;
+
+width:25px;
+height:25px;
+
+border-radius:50%;
+
+background:#c45cff55;
+
+pointer-events:none;
+
+backdrop-filter:blur(4px);
+
+box-shadow:
+
+0 0 25px #c45cff,
+0 0 60px #8a2eff;
+
+transform:translate(-50%,-50%);
+
+z-index:9999;
+
+}
+
 *{
 margin:0;
 padding:0;
@@ -337,27 +363,6 @@ opacity:0;
 
 }
 
-body{
-    cursor:none;
-}
-
-.cursor{
-    position:fixed;
-    width:24px;
-    height:24px;
-    border-radius:50%;
-    pointer-events:none;
-    z-index:9999;
-    background:rgba(200,80,255,.35);
-    border:1px solid rgba(255,255,255,.4);
-    backdrop-filter:blur(5px);
-    box-shadow:
-        0 0 15px #d86cff,
-        0 0 35px #9b2dff,
-        0 0 70px #7b00ff;
-    transform:translate(-50%,-50%);
-}
-
 </style>
 </head>
 
@@ -466,6 +471,8 @@ fill="#6b35ff"/>
 
 <div class="container">
 
+<div class="cursor"></div>
+
 <h1>🌌 ฐานข้อมูลนักศึกษา</h1>
 
 <table>
@@ -560,7 +567,14 @@ animate();
 
 </script>
 
-<div class="cursor"></div>
+const cursor = document.querySelector(".cursor");
+
+window.addEventListener("mousemove", (e) => {
+
+    cursor.style.left = e.clientX + "px";
+    cursor.style.top = e.clientY + "px";
+
+});
 
 </body>
 </html>
