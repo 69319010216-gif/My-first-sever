@@ -337,6 +337,16 @@ opacity:0;
 
 }
 
+.logo{
+    color:#b84dff;
+    font-size:40px;
+    margin-right:10px;
+    text-shadow:
+        0 0 10px #b84dff,
+        0 0 20px #8a2eff,
+        0 0 40px #6b00ff;
+}
+
 </style>
 </head>
 
@@ -445,7 +455,10 @@ fill="#6b35ff"/>
 
 <div class="container">
 
-<h1>🌌 ฐานข้อมูลนักศึกษา</h1>
+<h1>
+    <span class="logo">✦</span>
+    ฐานข้อมูลนักศึกษา
+</h1>
 
 <table>
 
