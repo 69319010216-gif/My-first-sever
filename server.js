@@ -36,6 +36,74 @@ const server = http.createServer(async (req, res) => {
 
 <style>
 
+/* ===========================
+   Spaceship
+=========================== */
+
+.spaceship{
+
+position:fixed;
+
+width:170px;
+height:85px;
+
+left:-220px;
+top:18%;
+
+z-index:-1;
+
+animation:
+fly 45s linear infinite,
+floatShip 5s ease-in-out infinite;
+
+filter:
+drop-shadow(0 0 20px #c66bff)
+drop-shadow(0 0 50px #8d2bff);
+
+opacity:.95;
+
+}
+
+@keyframes fly{
+
+0%{
+
+left:-250px;
+transform:translateY(0) rotate(3deg);
+
+}
+
+50%{
+
+transform:translateY(-35px) rotate(-2deg);
+
+}
+
+100%{
+
+left:110%;
+transform:translateY(20px) rotate(4deg);
+
+}
+
+}
+
+@keyframes floatShip{
+
+0%,100%{
+
+margin-top:0;
+
+}
+
+50%{
+
+margin-top:-18px;
+
+}
+
+}
+
 *{
 margin:0;
 padding:0;
@@ -281,6 +349,99 @@ opacity:0;
 <div class="planet"></div>
 
 <div class="shoot"></div>
+
+<div class="spaceship">
+
+<svg viewBox="0 0 500 250">
+
+<defs>
+
+<linearGradient id="ship" x1="0" x2="1">
+
+<stop offset="0%" stop-color="#f5f5ff"/>
+
+<stop offset="100%" stop-color="#7c2cff"/>
+
+</linearGradient>
+
+<radialGradient id="engine">
+
+<stop offset="0%" stop-color="#ffffff"/>
+
+<stop offset="40%" stop-color="#7dffff"/>
+
+<stop offset="100%" stop-color="transparent"/>
+
+</radialGradient>
+
+</defs>
+
+<!-- Flame -->
+
+<ellipse
+cx="45"
+cy="125"
+rx="45"
+ry="18"
+fill="url(#engine)">
+
+<animate
+
+attributeName="rx"
+
+values="30;55;30"
+
+dur="0.25s"
+
+repeatCount="indefinite"/>
+
+</ellipse>
+
+<!-- Body -->
+
+<ellipse
+
+cx="250"
+
+cy="125"
+
+rx="150"
+
+ry="55"
+
+fill="url(#ship)"/>
+
+<!-- Cockpit -->
+
+<ellipse
+
+cx="310"
+
+cy="105"
+
+rx="45"
+
+ry="28"
+
+fill="#9ef7ff"/>
+
+<!-- Wing -->
+
+<polygon
+
+points="180,135 70,200 210,165"
+
+fill="#6b35ff"/>
+
+<polygon
+
+points="180,115 70,50 210,85"
+
+fill="#6b35ff"/>
+
+</svg>
+
+</div>
 
 <div class="container">
 
