@@ -104,32 +104,6 @@ margin-top:-18px;
 
 }
 
-.cursor{
-
-position:fixed;
-
-width:25px;
-height:25px;
-
-border-radius:50%;
-
-background:#c45cff55;
-
-pointer-events:none;
-
-backdrop-filter:blur(4px);
-
-box-shadow:
-
-0 0 25px #c45cff,
-0 0 60px #8a2eff;
-
-transform:translate(-50%,-50%);
-
-z-index:9999;
-
-}
-
 *{
 margin:0;
 padding:0;
@@ -376,102 +350,7 @@ opacity:0;
 
 <div class="shoot"></div>
 
-<div class="spaceship">
-
-<svg viewBox="0 0 500 250">
-
-<defs>
-
-<linearGradient id="ship" x1="0" x2="1">
-
-<stop offset="0%" stop-color="#f5f5ff"/>
-
-<stop offset="100%" stop-color="#7c2cff"/>
-
-</linearGradient>
-
-<radialGradient id="engine">
-
-<stop offset="0%" stop-color="#ffffff"/>
-
-<stop offset="40%" stop-color="#7dffff"/>
-
-<stop offset="100%" stop-color="transparent"/>
-
-</radialGradient>
-
-</defs>
-
-<!-- Flame -->
-
-<ellipse
-cx="45"
-cy="125"
-rx="45"
-ry="18"
-fill="url(#engine)">
-
-<animate
-
-attributeName="rx"
-
-values="30;55;30"
-
-dur="0.25s"
-
-repeatCount="indefinite"/>
-
-</ellipse>
-
-<!-- Body -->
-
-<ellipse
-
-cx="250"
-
-cy="125"
-
-rx="150"
-
-ry="55"
-
-fill="url(#ship)"/>
-
-<!-- Cockpit -->
-
-<ellipse
-
-cx="310"
-
-cy="105"
-
-rx="45"
-
-ry="28"
-
-fill="#9ef7ff"/>
-
-<!-- Wing -->
-
-<polygon
-
-points="180,135 70,200 210,165"
-
-fill="#6b35ff"/>
-
-<polygon
-
-points="180,115 70,50 210,85"
-
-fill="#6b35ff"/>
-
-</svg>
-
-</div>
-
 <div class="container">
-
-<div class="cursor"></div>
 
 <h1>🌌 ฐานข้อมูลนักศึกษา</h1>
 
@@ -566,15 +445,6 @@ requestAnimationFrame(animate);
 animate();
 
 </script>
-
-const cursor = document.querySelector(".cursor");
-
-window.addEventListener("mousemove", (e) => {
-
-    cursor.style.left = e.clientX + "px";
-    cursor.style.top = e.clientY + "px";
-
-});
 
 </body>
 </html>
